@@ -55,7 +55,7 @@ const App = () => {
       if (deletedPet.error) {
         throw new Error(deletedPet.error);
       };
-      setPetList(petList.filter((pet) => pet._id !== deletedPet._id));
+      setPetList(petList.filter((pet) => pet._id !== petId));
       setSelected(null);
       setIsFormOpen(false);
     } catch (error) {
@@ -73,7 +73,7 @@ const App = () => {
       };
     };
     fetchPets();
-  }, [petList]);
+  }, []);
   
   return(
     <>

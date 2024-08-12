@@ -1,3 +1,5 @@
+const BASE_URL=`${import.meta.env.VITE_BACK_END_SERVER_URL}`;
+
 const index = async () => {
     try {
         const res = await fetch('http://localhost:3000/pets');
@@ -9,7 +11,7 @@ const index = async () => {
 
 const create = async (formData) => {
     try {
-        const res = await fetch('http://localhost:3000/pets', {
+        const res = await fetch(BASE_URL, {
             method: 'POST', 
             headers: {'Content-Type': 'application/json'}, 
             body: JSON.stringify(formData)}
@@ -22,7 +24,7 @@ const create = async (formData) => {
 
 const update = async (formData, petId) => {
     try {
-        const res = await fetch(`http://localhost:3000/pets/${petId}`, {
+        const res = await fetch(`${BASE_URL}${petId}`, {
             method: 'Put',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,7 +39,7 @@ const update = async (formData, petId) => {
 
 const deleter = async (petId) => {
     try{
-        const deletedPet = await fetch(`http://localhost:3000/pets/${petId}`, {
+        const deletedPet = await fetch(`${BASE_URL}${petId}`, {
             method: 'DELETE'
         });
         return deletedPet;
