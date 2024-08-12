@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useNavigate } from 'react';
 import * as petService from './services/petService.js';
 import PetList from "./components/PetList.jsx"
 import PetDetail from './components/PetDetail.jsx'
@@ -48,6 +48,20 @@ const App = () => {
       console.log(error);
     };
   };
+
+  const handleRemovePet = async (petId) => {
+    try {
+      const deletedPet = await petService.deleter(petId);
+      if (deletedPet.error) {
+        throw new Error(deletedPet.error);
+      };
+      setPetList(petList.filter((pet) => pet._id !== deletedPet._id));
+      setSelected(null);
+      setIsFormOpen(false);
+    } catch (error) {
+      console.log(error);
+    };
+  };
   
   useEffect(() => {
     const fetchPets = async () => {
@@ -59,12 +73,12 @@ const App = () => {
       };
     };
     fetchPets();
-  }, []);
+  }, [petList]);
   
   return(
     <>
       <PetList petList={petList} updateSelected={updateSelected} handleFormView={handleFormView} isFormOpen={isFormOpen} />
-      {isFormOpen ? <PetForm selected={selected} handleAddPet={handleAddPet} handleUpdatePet={handleUpdatePet} /> : <PetDetail selected={selected} handleFormView={handleFormView} />}
+      {isFormOpen ? <PetForm selected={selected} handleAddPet={handleAddPet} handleUpdatePet={handleUpdatePet} /> : <PetDetail selected={selected} handleFormView={handleFormView} handleRemovePet={handleRemovePet} />}
     </>
   )
 };

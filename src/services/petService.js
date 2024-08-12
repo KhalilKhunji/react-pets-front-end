@@ -35,4 +35,15 @@ const update = async (formData, petId) => {
     };
 };
 
-export { index, create, update };
+const deleter = async (petId) => {
+    try{
+        const deletedPet = await fetch(`http://localhost:3000/pets/${petId}`, {
+            method: 'DELETE'
+        });
+        return deletedPet;
+    } catch (error) {
+        console.log(error);
+    };
+};
+
+export { index, create, update, deleter };
