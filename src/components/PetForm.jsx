@@ -23,7 +23,7 @@ const PetForm = ({handleAddPet, selected, handleUpdatePet}) => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name </label>
         <input id="name" name="name" value={formData.name} onChange={handleChange} required />

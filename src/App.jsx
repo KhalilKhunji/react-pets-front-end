@@ -3,6 +3,7 @@ import * as petService from './services/petService.js';
 import PetList from "./components/PetList.jsx"
 import PetDetail from './components/PetDetail.jsx'
 import PetForm from "./components/PetForm.jsx"
+import './App.css';
 
 
 const App = () => {

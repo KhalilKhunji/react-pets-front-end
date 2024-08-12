@@ -5,9 +5,11 @@ const PetList = ({petList, updateSelected, handleFormView, isFormOpen}) => {
     ));
     
     return(
-        <div>
+        <div className="sidebar-container">
             <h2>Pet List</h2>
-            {!petList.length ? <h2>No Pets Yet!</h2> : <ul>{pets}</ul>}
+            <div className="list-container">
+                {!petList.length ? <h2>No Pets Yet!</h2> : <ul>{pets}</ul>}
+            </div>
             <button onClick={handleFormView}>
                 {isFormOpen ? 'Close Form' : 'Add New Pet'}
             </button>
