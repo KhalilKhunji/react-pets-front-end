@@ -1,4 +1,4 @@
-const PetDetail = ({selected}) => {
+const PetDetail = ({selected, handleFormView}) => {
     if(!selected) {
         return(
             <div>
@@ -14,6 +14,7 @@ const PetDetail = ({selected}) => {
                     <li>Breed: {selected.breed}</li>
                     <li>Age: {selected.age} year{selected.age > 1 ? 's' : ''} old</li>
                 </ul>
+                <button onClick={() => {handleFormView(selected)}}>Edit</button>
             </div>
         );
     };
